@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 描述这个POM文件是遵从哪个版本的项目描述符-->
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.xm</groupId>
+    <artifactId>xm-root</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <!-- 声明多个子模块-->
+    <modules>
+        <module>xm.dao</module>
+        <module>xm.service</module>
+        <module>xm.view</module>
+        <module>xm.web</module>
+        <module>aaa</module>
+    </modules>
+    <!--集中配置版本关系-->
+    <properties>
+        <jedis.version>2.9.0</jedis.version>
+        <spring-boot.version>1.5.2.RELEASE</spring-boot.version>
+    </properties>
+    <!--此处 dependencyManagement 并不会直接引入依赖，是一种懒加载的方式-->
+    <dependencyManagement>
+        <dependencies>
+            <!--引入Redis的客户端-->
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
+            </dependency>
+            <!--引入spring boot的依赖-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--版本说明，统一管理版本号-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.11</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>
